@@ -1,0 +1,53 @@
+<div class="column w50">
+  <h1 class="topPadding">How to get started</h1>
+  <p>
+    Setting up SGL is easy and you can do it in under 5 minutes. 
+    When your download is complete, extract the files and place them in your project.
+  </p>
+  <p>
+    Make sure that your SubSystem is set to WINDOWS .
+    If you don't do this you'll probably get an error looking something like 
+    <a target="_BLANK" href="img/subsystemerror.png">this</a>. 
+    That's because the WinMain functions never gets called and therefore SGL is never initialized. 
+    Here is an <a target="_BLANK" href="img/checksubsystem.png">image</a> showing you have to set the correct SubSystem in Visual Studio.
+  </p>
+  <p>
+    Create a new cpp file and copy paste the sample code from the right box into your project.
+  </p>
+  <p>
+    Congratulations, you just made your first SGL program! Smack that compile button and enjoy the show.
+  </p>
+</div>
+<pre class="column w50"><code>#include "SGL.h"
+#include &lt;cmath&gt;
+
+void main() {
+
+  int t = 0;
+
+  while(true)
+  {
+    t++;
+
+    sgl->clear(255, 255, 255);
+
+    sgl->setColor(
+      (255/2) + (255/2) * cos(0.005 * t),
+      (255/2) + (255/2) * sin(0.005 * t),
+      (255/2) + (255/2) * cos(0.01 * t)
+    );
+
+    float xpos = 600 + 400 * sin(0.01 * t);
+    float ypos = 300 + 100 * cos(0.05 * t);
+
+    sgl->save();
+    sgl->translate(xpos, ypos);
+    sgl->rotate(t);
+    sgl->fillRect(-25, -25, 50, 50);
+    sgl->restore();
+
+    sgl->render();
+
+    Sleep(16);
+  }
+}</code></pre>

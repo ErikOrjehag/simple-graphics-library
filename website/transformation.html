@@ -1,0 +1,50 @@
+<h1>Transformation</h1>
+<table>
+  <tr>
+    <td>
+      <p>
+        <strong>Saving and restoring</strong><br>
+        Saving and restoring pushes and pops transformations
+        from a stack. The methods can be nested 100 times 
+        before the stack runs out of memory.
+      </p>
+    </td>
+    <td>
+      <pre><code>void save();
+void restore();</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Translate</strong><br>
+        Moves the origo by 'x' and 'y' pixels.
+      </p>
+    </td>
+    <td>
+      <pre><code>void translate(float x, float y);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Rotate</strong><br>
+        Rotates the coordinate system by 'angle' degrees.
+      </p>
+    </td>
+    <td>
+      <pre><code>void rotate(float angle);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Scale</strong><br>
+        Scales the coordinate system by a factor of 'x' and 'y'.
+      </p>
+    </td>
+    <td>
+      <pre><code>void scale(float x, float y);</code></pre>
+    </td>
+  </tr>
+</table>

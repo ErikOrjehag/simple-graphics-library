@@ -1,0 +1,47 @@
+<div class="column w50">
+  <h1 class="topPadding">Simple Graphics Library</h1>
+  <p>
+    SGL is a small graphics wrapper for GDI+ designed 
+    to help windows C++ developers to draw stuff with 
+    very little effort.
+  </p>
+  <p>
+    The setup process is simple. There are no external 
+    dependences and no need to link to libraries. 
+    Please feel free to improve the source via GitHub.
+  </p>
+  <p>
+    The sample code to the right is all you need to open
+    a window and draw a moving rectangle!
+  <p>
+  <p>
+    <a class="button" href="https://github.com/ErikOrjehag/simple-graphics-library/archive/master.zip">Download SGL</a>
+    <a class="button" href="https://github.com/ErikOrjehag/simple-graphics-library">Contribute on GitHub</a>
+  </p>
+</div>
+<pre class="column w50"><code>#include "SGL.h"
+#include &lt;cmath&gt;
+
+void main() {
+
+  int t = 0;
+
+  sgl->setColor(129, 98, 179);
+
+  while(true)
+  {
+    sgl->clear(255, 255, 255);
+
+    sgl->fillRect(
+      200 + 100 * sin(0.05 * t),  // pos x
+      200 + 100 * cos(0.05 * t),  // pos y
+      50, 50                      // size
+    );
+
+    sgl->render();
+
+    t++;
+
+    Sleep(16);
+  }
+}</code></pre>

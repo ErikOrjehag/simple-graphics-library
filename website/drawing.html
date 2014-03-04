@@ -1,0 +1,132 @@
+<h1>Drawing</h1>
+<table>
+  <tr>
+    <td>
+      <p>
+        <strong>Render</strong><br>
+        When you are done with your fills and strokes, call the render method to reveal your masterpience to the screen.
+      </p>
+    </td>
+    <td>
+      <pre><code>void render();</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Clear</strong><br>
+        Clear the entire screen by filling it with a rgb color. A byte ranges from 0 to 255.
+      </p>
+    </td>
+    <td>
+      <pre><code>void clear(byte r, byte g, byte b);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Filling</strong><br>
+        Fills a shape with the current seleced color. The arguments are pretty self explanatory.
+      </p>
+    </td>
+    <td>
+      <pre><code>void fillRect(float x, float y, float w, float h);
+void fillTriangle(float x, float y, float w, float h);
+void fillCircle(float x, float y, float r);
+void fillEllipse(float x, float y, float w, float h);
+void fillPolygon(Gdiplus::Point &points, int count);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Stroking</strong><br>
+        Strokes a shape with the current selected color and stroke width. The arguments are pretty self explanatory.
+      </p>
+    </td>
+    <td>
+      <pre><code>void strokeRect(float x, float y, float w, float h);
+void strokeTriangle(float x, float y, float w, float h);
+void strokeCircle(float x, float y, float r);
+void strokeEllipse(float x, float y, float w, float h);
+void strokePolygon(Gdiplus::Point &points, int count);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Polygon</strong><br>
+        Here is an example of how to fill a polyon. The polygon can be
+        ether convex or concave, both work just as well. The same principle
+        applies when stroking polygons.
+      </p>
+    </td>
+    <td>
+      <pre><code>using namespace Gdiplus
+
+Point points[] = {
+  Point(0, 0),
+  Point(0, 50),
+  Point(50, 50),
+  Point(50, 0),
+  Point(25, 30)
+};
+
+sgl->fillPolygon(*points, 5);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Line</strong><br>
+        Draw a line from start to end with the current selected color and stroke width.
+      </p>
+    </td>
+    <td>
+      <pre><code>void drawLine(float startx, float starty, float endx, float endy);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Path</strong><br>
+        Use moveTo(x, y) to set the pen position. Use lineTo(x, y) to draw a line from 
+        that position to a new position. Continue the path by using multiple lineTo(x, y) calls.
+      </p>
+    </td>
+    <td>
+      <pre><code>void moveTo(float x, float y);
+void lineTo(float x, float y);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Text</strong><br>
+        Draws a string at the specified position. Look at the example for usage.
+      </p>
+    </td>
+    <td>
+      <pre><code>void drawString(const WCHAR str[], float x, float y);
+
+// Example
+sgl->drawString(L"Hello world!", 40, 20);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Image</strong><br>
+        Draws an image at the specified position. Look at the example for usage.
+      </p>
+    </td>
+    <td>
+      <pre><code>void drawImage(Gdiplus::Image *img, float x, float y);
+
+// Example
+using namespace Gdiplus
+Image img(L"example.png");
+sgl->drawImage(&img, 100, 100);</code></pre>
+    </td>
+  </tr>
+</table>

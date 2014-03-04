@@ -1,0 +1,97 @@
+<div class="column w40">
+  <h1 class="topPadding">Accessing all GDI+ features</h1>
+  <p>
+    <strong>Oh no, I'm missing a feature!</strong><br>
+    Simplicity is nice but I really want to draw this 
+    fancy thing but I'm missing too many features.
+  </p>
+  <p>
+    <img src="img/arcwidtharrow.png">
+  </p>
+  <p>
+    Dont worry! There is a way to access all the GDI+ 
+    graphic features.
+  </p>
+  <p>
+    <strong>Synchronizing threads</strong><br>
+    SGL is multithreaded so if you want to draw something
+    manually without using the standard methods you'll have 
+    to synchronize the threads. This is really easy to do.
+    <br><i style="line-height: 300%;">ssgl->waitTillCanUseGraphics();</i><br>
+    This will freeze your thread until the graphics objects are not 
+    used by another thread. If you don't do this your program
+    may occasionally crash if another thread tries to access
+    the same memory as you are at the same time.
+    <br><i style="line-height: 300%;">sgl->stopUsingGraphics();</i><br>
+    This allows other threads to draw stuff again.
+  </p>
+  <p>
+    <strong>Drawing width GDI+</strong><br>
+    The method 
+    <br><i style="line-height: 300%;">ssgl->useGDI();</i><br> 
+    returns a pointer to the GDI+ graphics object used internally by SGL. 
+    You can use this pointer to access all of the GDI+ graphics features. 
+    Do not delete this pointer as it will remove the object from SGL 
+    and future drawing will fail.
+  </p>
+  <p>
+    <a class="button" target="_BLANK" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms533798(v=vs.85).aspx">Read the GDI+ docs</a>
+  </p>
+</div>
+<div class="column w60">
+  <pre><code>#include "SGL.h"
+
+void main() {
+
+using namespace Gdiplus;
+
+sgl->setColor(129, 98, 179);
+
+while(true)
+{
+sgl->clear(255, 255, 255);
+
+// Wait until no other thread is drawing
+ssgl->waitTillCanUseGraphics();
+
+// Start of with our current pen
+Pen *pen = ssgl->copyPen();
+
+// Make some changes using GDI+
+pen->SetWidth(5);
+AdjustableArrowCap *cap = new AdjustableArrowCap(3, 3);
+pen->SetCustomEndCap(cap);
+delete cap;
+
+// Draw using GDI+
+sgl->useGDI()->DrawArc(pen, 100, 100, 50, 30, 0, 250);
+delete pen;
+
+// Make drawing possible for other threads again
+sgl->stopUsingGraphics();
+
+sgl->render();
+
+Sleep(16);
+}
+}     </code></pre>
+  <p>
+    <br><br>
+    The relevant methods.
+  </p>
+  <pre><code>// Freezes thread until no other threads are drawing
+void waitTillCanUseGraphics();
+
+// Make drawing possible for other threads again
+void stopUsingGraphics();
+
+// Returns a pointer to the internal GDI+ graphics object
+Gdiplus::Graphics *useGDI();
+
+// Returns a copy of the current pen
+Gdiplus::Pen *copyPen();
+
+// Returns a copy of the current brush
+Gdiplus::SolidBrush *copyBrush();
+  </code></pre>
+</div>
