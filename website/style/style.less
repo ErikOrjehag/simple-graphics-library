@@ -1,0 +1,179 @@
+
+@charset "utf-8";
+
+@themeColor: #6f5499;
+@textColor: #666;
+@fontSize: 16px;
+@fontFamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial;
+@spacing: 20px;
+@radius: 5px;
+
+.default-font {
+	font-family: @fontFamily;
+	font-size: @fontSize;
+}
+
+.after-clear {
+	&:after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
+}
+
+body, html {
+	margin: 0;
+	height: 100%;
+	font-family: @fontFamily;
+	color: @textColor;
+	line-height: 150%;
+	font-size: @fontSize;
+}
+
+a {
+	text-decoration: none;
+	color: darken(@themeColor, 10%);
+
+	&:hover {
+		border-bottom: 1px dotted @themeColor;
+	}
+}
+
+h1 {
+	font-size: 30px;
+	color: @themeColor;
+}
+
+.topPadding {
+	padding-top: @spacing;
+}
+
+strong {
+	font-weight: bold;
+	color: @themeColor;
+}
+
+i {
+	font-style: italic;
+}
+
+p {
+	padding-top: @spacing;
+}
+
+section {
+	padding: (@spacing * 2) 0;
+}
+
+.stripes {
+	background: url("../img/stripes.png");
+	width: 100%;
+	height: 5px;
+	opacity: 0.075;
+}
+
+.column {
+	float: left;
+
+	&:first-of-type {
+		padding-right: @spacing;
+	}
+
+	&.w40 {
+		width: 40%;
+	}
+	&.w50 {
+		width: 50%;
+	}
+	&.w60 {
+		width: 60%;
+	}
+}
+
+.wrap {
+	.after-clear;
+	width: 900px;
+	margin: 0 auto;
+}
+
+.button {
+	display: inline-block;
+	padding: (@spacing / 2) @spacing;
+	color: #fff;
+	background-color: @themeColor;
+	border-radius: @radius;
+
+	&:hover {
+		border: none;
+		background-color: darken(@themeColor, 5%);
+	}
+}
+
+header {
+	font-size: 18px;
+	color: #fff;
+	background-color: @themeColor;
+	padding: (@spacing * 2) 0;
+
+	background: radial-gradient(ellipse at center, lighten(@themeColor, 8%) 0%, @themeColor 80%);
+
+	h1 {
+		color: #fff;
+	}
+
+	pre code {
+		box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+	}
+
+	.button {
+		background-color: darken(@themeColor, 5%);
+
+		&:hover {
+			background-color: darken(@themeColor, 10%);
+		}
+	}
+}
+
+footer {
+	color: #fff;
+	background-color: @themeColor;
+	padding: (@spacing * 2) 0;
+	text-align: center;
+
+	a {
+		color: #fff;
+
+		&:hover {
+			border-bottom: 1px dotted #fff;
+		}
+	}
+}
+
+pre code {
+	font-family: "Courier New";
+	font-size: 14px;
+	line-height: 100%;
+	padding: @spacing !important;
+	margin: 6px;
+	box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+table {
+	width: 100%;
+	vertical-align: top;
+
+	td {
+		vertical-align: top;
+		padding: 0;
+		margin: 0;
+
+		&:first-of-type {
+			padding-right: @spacing;
+			width: 320px;
+		}
+	}
+
+	pre {
+		margin-top: @spacing * 2;
+	}
+}
