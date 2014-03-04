@@ -11,7 +11,6 @@ Are you eager to get involved in this project? Fantastic! Here are some stuff th
 * Hide some public variables and methods (Marked with a comment in the header file).
 * Minimize flickering caused by manual resize of the window.
 * Make copyBrush() and copyPen() not return pointers.
-* Make thread synchronization redundant if possible.
 * ~~setPenStyle(SOLID, DASHED or DOTTED).~~
 * ~~drawPixel(float, flaot).~~
 * ~~setWindowTitle(string).~~
