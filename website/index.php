@@ -28,7 +28,7 @@
     ?>
     <footer>
       Created by Erik Örjehag <i>sgl@orjehag.se</i><br>
-      and the community via <a href="https://github.com/ErikOrjehag/simple-graphics-library">GitHub</a><br>
+      and the community via <a href="https://github.com/ErikOrjehag/simple-graphics-library" target="_blank" onclick="ga('send', 'event', 'button', 'click', 'GitHub');">GitHub</a><br>
       <br>
       &copy; <?php echo Date('Y'); ?> SGL
     </footer>
