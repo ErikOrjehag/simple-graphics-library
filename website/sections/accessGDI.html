@@ -43,38 +43,33 @@
 
 void main() {
 
-using namespace Gdiplus;
+  using namespace Gdiplus;
 
-sgl->setColor(129, 98, 179);
+  sgl->clear(255, 255, 255);
 
-while(true)
-{
-sgl->clear(255, 255, 255);
+  sgl->setColor(129, 98, 179);
 
-// Wait until no other thread is drawing
-ssgl->waitTillCanUseGraphics();
+  // Wait until no other thread is drawing
+  ssgl->waitTillCanUseGraphics();
 
-// Start of with our current pen
-Pen *pen = ssgl->copyPen();
+  // Start of with our current pen
+  Pen *pen = ssgl->copyPen();
 
-// Make some changes using GDI+
-pen->SetWidth(5);
-AdjustableArrowCap *cap = new AdjustableArrowCap(3, 3);
-pen->SetCustomEndCap(cap);
-delete cap;
+  // Make some changes using GDI+
+  pen->SetWidth(5);
+  AdjustableArrowCap *cap = new AdjustableArrowCap(3, 3);
+  pen->SetCustomEndCap(cap);
+  delete cap;
 
-// Draw using GDI+
-sgl->useGDI()->DrawArc(pen, 100, 100, 50, 30, 0, 250);
-delete pen;
+  // Draw using GDI+
+  sgl->useGDI()->DrawArc(pen, 100, 100, 50, 30, 0, 250);
+  delete pen;
 
-// Make drawing possible for other threads again
-sgl->stopUsingGraphics();
+  // Make drawing possible for other threads again
+  sgl->stopUsingGraphics();
 
-sgl->render();
-
-Sleep(16);
-}
-}     </code></pre>
+  sgl->render();
+}</code></pre>
   <p>
     <br><br>
     The relevant methods.

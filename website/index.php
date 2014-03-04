@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Simple Graphics Library</title>
+    <link rel="shortcut icon" href="img/favicon.png">
     <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/vs.min.css">
@@ -17,7 +18,7 @@
       </div>
     </header>
     <?php
-      $sections = array("getStarted", "drawing", "setters", "transformation", "accessGDI");
+      $sections = array("getStarted", "drawing", "setters", "getters", "transformation", "accessGDI");
       for($i = 0; $i < count($sections); $i++) {
         if($i != 0) echo "<div class='stripes'></div>";
         echo "<section class='wrap'>";

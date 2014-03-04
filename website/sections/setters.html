@@ -36,12 +36,14 @@
   <tr>
     <td>
       <p>
-        <strong>Window size</strong><br>
-        Changes the size of the window.
+        <strong>Stroke style</strong><br>
+        Sets the stroke style used when stroking shapes.
       </p>
     </td>
     <td>
-      <pre><code>void setWindowSize(int w, int h);</code></pre>
+      <pre><code>void setStrokeStyle(int s);
+        
+[SGL::SOLID] [SGL::DASHED] [SGL::DOTTED]</code></pre>
     </td>
   </tr>
   <tr>
@@ -53,6 +55,31 @@
     </td>
     <td>
       <pre><code>void setFontSize(int s);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Window size</strong><br>
+        Changes the size of the window.
+      </p>
+    </td>
+    <td>
+      <pre><code>void setWindowSize(int w, int h);</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <strong>Window title</strong><br>
+        Changes the title of the window.
+      </p>
+    </td>
+    <td>
+      <pre><code>void setWindowTitle(const WCHAR str[]);
+
+// Example
+sgl->setWindowTitle(L"Hello World!");</code></pre>
     </td>
   </tr>
 </table>

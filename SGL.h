@@ -1,28 +1,20 @@
 
 /*********************************************************
 
-	COPYRIGHT NOTICE
+	COPYRIGHT NOTICE (C) 2014 Erik Örjehag SGL
 
 	You may:
 	
-	*	Alter this source if you give proper credit.
-		Feel free to fork the official GitHub 
-		repository.
-
-	*	Make profit using this library if you give 
-		proper credit.
-
-	*	Distribute this library if you give proper 
-		credit.
+	*	Make profit using this library.
+	*	Distribute this library.
+	*	Alter the source code.
 
 	You may not:
 
-	*	Leave out proper creadit. If the library
-		is used for non personal use a link to the
-		official website or the GitHub repository 
-		is appropritate.
-
-	Copyright SGL 2014, Erik Örjehag
+	*	Leave out proper creadit. If this library
+		(or a altered version) is used for non 
+		personal use a link to the official website 
+		or the GitHub repository is appropritate.
 
 **********************************************************/
 
@@ -37,6 +29,11 @@ DWORD WINAPI UserThread(LPVOID lpParameter);
 
 class SGL
 {
+public:
+	static const Gdiplus::DashStyle SOLID = Gdiplus::DashStyleSolid;
+	static const Gdiplus::DashStyle DASHED = Gdiplus::DashStyleDash;
+	static const Gdiplus::DashStyle DOTTED = Gdiplus::DashStyleDot;
+
 private:
 	int width, height;
 	HDC screenDC;
@@ -48,6 +45,7 @@ private:
 	unsigned gslen;
 	int fontSize;
 	float strokeWidth;
+	Gdiplus::DashStyle strokeStyle;
 	byte alpha, red, green, blue;
 	Gdiplus::Pen *pen;
 	Gdiplus::SolidBrush *brush;
@@ -56,9 +54,8 @@ private:
 	void updateTools();
 
 public:
+	// These should ideally be hidden from the user.
 	SGL();
-
-	// These should be hidden from the user.
 	HANDLE hUserThread;
 	HANDLE evCanDraw;
 	HWND window;
@@ -67,15 +64,21 @@ public:
 	// ------------------------------------
 
 	// API
+
 	void waitTillCanUseGraphics();
 	void stopUsingGraphics();
 	void render();
 
 	void setStrokeWidth(float w);
+	void setStrokeStyle(int s);
 	void setColor(byte r, byte g, byte b);
 	void setAlpha(float a);
 	void setFontSize(int s);
 	void setWindowSize(int w, int h);
+	void setWindowTitle(const WCHAR str[]);
+
+	int getWidth();
+	int getHeight();
 
 	void save();
 	void restore();
@@ -103,6 +106,7 @@ public:
 
 	void drawString(const WCHAR str[], float x, float y);
 	void drawImage(Gdiplus::Image *img, float x, float y);
+	void drawPixel(float x, float y);
 
 	Gdiplus::Graphics *useGDI();
 	Gdiplus::Pen *copyPen();

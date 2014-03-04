@@ -1,28 +1,20 @@
 
 /*********************************************************
 
-	COPYRIGHT NOTICE
+	COPYRIGHT NOTICE (C) 2014 Erik Örjehag SGL
 
 	You may:
 	
-	*	Alter this source if you give proper credit.
-		Feel free to fork the official GitHub 
-		repository.
-
-	*	Make profit using this library if you give 
-		proper credit.
-
-	*	Distribute this library if you give proper 
-		credit.
+	*	Make profit using this library.
+	*	Distribute this library.
+	*	Alter the source code.
 
 	You may not:
 
-	*	Leave out proper creadit. If the library
-		is used for non personal use a link to the
-		official website or the GitHub repository 
-		is appropritate.
-
-	Copyright SGL 2014, Erik Örjehag
+	*	Leave out proper creadit. If this library
+		(or a altered version) is used for non 
+		personal use a link to the official website 
+		or the GitHub repository is appropritate.
 
 **********************************************************/
 
@@ -130,7 +122,7 @@ SGL::SGL()
 	evCanDraw = CreateEvent(0, TRUE, FALSE, L"evCanDraw");
 	mxUseGraphics = CreateMutex(0, FALSE, L"mxUseGraphics");
 
-	fontSize = 24;
+	fontSize = 24; strokeStyle = SOLID;
 	strokeWidth = 1; alpha = 255;
 	red = 255; green = 255; blue = 255;
 	updateTools();
@@ -170,6 +162,7 @@ void SGL::updateTools()
 	if(brush) delete brush;
 
 	pen = new Pen(Color(alpha, red, green, blue), strokeWidth);
+	pen->SetDashStyle(strokeStyle);
 	brush = new SolidBrush(Color(alpha, red, green, blue));
 
 	stopUsingGraphics();
@@ -186,13 +179,7 @@ void SGL::cleanUp()
     PostQuitMessage(0);
 }
 
-//		   ###    ########  #### 
-//		  ## ##   ##     ##  ##  
-//		 ##   ##  ##     ##  ##  
-//		##     ## ########   ##  
-//		######### ##         ##  
-//		##     ## ##         ##  
-//		##     ## ##        #### 
+// API
 
 void SGL::waitTillCanUseGraphics()
 {
@@ -214,6 +201,11 @@ void SGL::render()
 void SGL::setStrokeWidth(float w)
 {
 	strokeWidth = w;
+	updateTools();
+}
+
+void SGL::setStrokeStyle(int s) {
+	strokeStyle = (Gdiplus::DashStyle) s;
 	updateTools();
 }
 
@@ -239,6 +231,21 @@ void SGL::setFontSize(int s)
 void SGL::setWindowSize(int w, int h)
 {
 	SetWindowPos(window, 0, 0, 0, w, h, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+}
+
+void SGL::setWindowTitle(const WCHAR str[])
+{
+	SetWindowText(window, str);
+}
+
+int SGL::getWidth()
+{
+	return width;
+}
+
+int SGL::getHeight()
+{
+	return height;
 }
 
 void SGL::save()
@@ -403,9 +410,17 @@ void SGL::drawString(const WCHAR str[], float x, float y)
 	stopUsingGraphics();
 }
 
-void SGL::drawImage(Gdiplus::Image *img, float x, float y) {
+void SGL::drawImage(Gdiplus::Image *img, float x, float y)
+{
 	waitTillCanUseGraphics();
 	graphics->DrawImage(img, x, y, img->GetWidth(), img->GetHeight());
+	stopUsingGraphics();
+}
+
+void SGL::drawPixel(float x, float y)
+{
+	waitTillCanUseGraphics();
+	graphics->FillRectangle(brush, x, y, 1.f, 1.f);
 	stopUsingGraphics();
 }
 
