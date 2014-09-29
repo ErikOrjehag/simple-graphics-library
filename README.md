@@ -1,4 +1,5 @@
 #Simple Graphics Library
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/ErikOrjehag/simple-graphics-library?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 SGL is a small graphics wrapper for [GDI+](http://msdn.microsoft.com/en-us/library/windows/desktop/ms533798(v=vs.85).aspx) designed to help windows C++ developers to draw stuff with very little effort. Please visit the [official website](http://orjehag.se/SGL) for more information. A stable version can be found on our website, the developer version can be downloaded from this repository.
 
