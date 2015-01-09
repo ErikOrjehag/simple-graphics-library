@@ -4,6 +4,8 @@ SGL is a small graphics wrapper for [GDI+](http://msdn.microsoft.com/en-us/libra
 
 ## To do
 
+[![ranom image](http://www.captchacreator.com/captcha/captchac_code_google.php)](http://google.se)
+
 Are you eager to get involved in this project? Fantastic! Here are some stuff that needs fixing.
 
 * Spell check the website.
